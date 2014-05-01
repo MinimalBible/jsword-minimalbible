@@ -11,5 +11,7 @@ task doBuildJSword (type: GradleBuild) {
 }
 
 artifacts {
-	buildJSword doBuildJSword.ext.outputJar
+	buildJSword(doBuildJSword.ext.outputJar) {
+		builtBy doBuildJSword
+	}
 }
