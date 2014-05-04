@@ -10,8 +10,13 @@ task doBuildJSword (type: GradleBuild) {
 	ext.outputJar = file('distribution/jsword.jar')
 }
 
+task conditionalBuildJSword () {
+    if(!file(doBuildJSword.ext.outputJar).exists())
+        doBuildJSword
+}
+
 artifacts {
 	buildJSword(doBuildJSword.ext.outputJar) {
-		builtBy doBuildJSword
+		builtBy conditionalBuildJSword
 	}
 }
