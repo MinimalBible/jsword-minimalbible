@@ -64,11 +64,9 @@
 		<copy file="${jsword.resources}/BibleNames_zh_CN.properties"
 			tofile="${build.src}/BibleNames_zh.properties" overwrite="true" />
 
-		<!--
 		<copy todir="${build.src}" overwrite="true">
 			<fileset dir="${minbible.jsword.src}" />
 		</copy>
-		-->
 
 	</target>
 
