@@ -4,7 +4,9 @@ import org.crosswire.jsword.book.BookCategory;
 import org.crosswire.jsword.book.BookFilter;
 import org.crosswire.jsword.book.BookFilters;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Module to help with some conversions between BookCategories and BookFilters
@@ -41,6 +43,16 @@ public class FilterUtil {
         } else {
             throw new InvalidFilterCategoryMappingException("Can not map from category: " + c.toString() + " to filter.");
         }
+    }
+
+    public static List<Book> applyFilter(List<Book> books, BookFilter f) {
+        List<Book> filtered = new ArrayList<Book>();
+        for (Book b: books) {
+            if (f.test(b)) {
+                filtered.add(f);
+            }
+        }
+        return filtered;
     }
 
     public static class InvalidFilterCategoryMappingException extends Exception {
