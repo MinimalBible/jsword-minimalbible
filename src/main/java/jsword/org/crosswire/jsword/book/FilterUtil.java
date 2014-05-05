@@ -49,7 +49,7 @@ public class FilterUtil {
         List<Book> filtered = new ArrayList<Book>();
         for (Book b: books) {
             if (f.test(b)) {
-                filtered.add(f);
+                filtered.add(b);
             }
         }
         return filtered;
