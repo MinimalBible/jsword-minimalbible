@@ -86,7 +86,7 @@
 				<exclude name="**/*.java" />
 				<exclude name="**/*.html" />
 			</fileset>
-			<zipgroupfileset dir="${jsword-dependencydir}" includes="*.jar" excludes="junit-*.jar, hamcrest-*.jar, jarjar-*.jar" />
+			<zipgroupfileset dir="${jsword-dependencydir}" includes="*.jar" excludes="junit-*.jar, hamcrest-*.jar, jarjar-*.jar, icu4j-*.jar" />
 			<rule pattern="org.apache.http.**" result="org.apache.shaded.http.@1" />
 		</jarjar>
 		
