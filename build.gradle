@@ -2,7 +2,7 @@ configurations {
 	buildJSword
 }
 
-task doBuildJSword (type: GradleBuild) { 
+task compileJava (type: GradleBuild) { 
 	buildFile = 'jsword-stub.gradle'
 	tasks = ['clean', 'ivy.check', 'ivy.download', 'ivy.task', 'ivy',
 			'init', 'mergeCode', 'compile', 'jar'] //, 'copyJarsToMinimalBible']
@@ -13,7 +13,7 @@ task doBuildJSword (type: GradleBuild) {
 }
 
 artifacts {
-	buildJSword(doBuildJSword.ext.outputJar) {
-		builtBy doBuildJSword
+	buildJSword(compileJava.ext.outputJar) {
+		builtBy compileJava
 	}
 }
