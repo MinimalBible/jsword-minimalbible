@@ -1,7 +1,1 @@
-/bin
-/build
-/distribution
-/ivy
-/tools
-/.gradle
-*.iml
+# Created by .ignore support plugin (hsz.mobi)
