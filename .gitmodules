@@ -1,0 +1,3 @@
+[submodule "jsword"]
+	path = jsword
+	url = https://github.com/crosswire/jsword.git
