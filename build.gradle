@@ -1,33 +1,40 @@
 group 'org.bspeice'
 version '1.0-SNAPSHOT'
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.1'
-    }
-}
 
 apply plugin: 'java'
-apply plugin: 'com.github.johnrengelman.shadow'
 
 repositories {
     mavenCentral()
 }
 
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+}
+
+println(sourceSets.main.java)
+
 task mergeSources(type: Copy) {
-    from 'jsword/src/main/java', 'src/stage/java'
+    from 'jsword/src/main/java'
+    from 'src/stage/java'
+
     into 'src/main/java'
 }
 
 task mergeResources(type: Copy) {
-    from 'jsword/src/main/resources', 'src/stage/resources'
+    from 'jsword/src/main/resources'
+    from 'src/stage/resources'
+
     into 'src/main/resources'
 }
 
 tasks.compileJava.dependsOn(mergeSources)
-tasks.compileJava.dependsOn(mergeResources)
 
 dependencies {
     compile 'commons-net:commons-net:3.3'
@@ -42,11 +49,4 @@ dependencies {
     compile 'org.apache.lucene:lucene-smartcn:3.0.3'
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
-}
-
-shadowJar {
-    dependencies {
-        include(dependency('org.apache.httpcomponents:httpclient:4.3.2'))
-    }
-    relocate 'org.apache.http', 'org.apache.shaded.http'
 }
