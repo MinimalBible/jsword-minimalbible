@@ -3,7 +3,7 @@
 
 	<!-- Much of this code taken lovingly from https://github.com/mjdenham/and-bible/blob/master/jsword-tweaks/build.xml -->
 
-	<property name="jsword.project" location="../jsword" />
+	<property name="jsword.project" location="jsword" />
 	<property name="jsword.src" location="${jsword.project}/src/main/java" />
 	<property name="jsword.resources" location="${jsword.project}/src/main/resources" />
 	<property name="minbible.jsword.src" location="src/main/java/jsword" />
