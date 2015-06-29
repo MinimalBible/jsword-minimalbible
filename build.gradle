@@ -1,52 +1,19 @@
-group 'org.bspeice'
-version '1.0-SNAPSHOT'
-
-apply plugin: 'java'
-
-repositories {
-    mavenCentral()
+configurations {
+	buildJSword
 }
 
-sourceSets {
-    main {
-        java {
-            srcDir 'src/main/java'
-        }
-        resources {
-            srcDir 'src/main/resources'
-        }
+task compileJava (type: GradleBuild) { 
+	buildFile = 'jsword-stub.gradle'
+	tasks = ['clean', 'ivy.check', 'ivy.download', 'ivy.task', 'ivy',
+			'init', 'mergeCode', 'compile', 'jar'] //, 'copyJarsToMinimalBible']
+    ext.outputJar = file('distribution/jsword.jar')
+    outputs.upToDateWhen {
+        ext.outputJar.exists()
     }
 }
 
-println(sourceSets.main.java)
-
-task mergeSources(type: Copy) {
-    from 'jsword/src/main/java'
-    from 'src/stage/java'
-
-    into 'src/main/java'
-}
-
-task mergeResources(type: Copy) {
-    from 'jsword/src/main/resources'
-    from 'src/stage/resources'
-
-    into 'src/main/resources'
-}
-
-tasks.compileJava.dependsOn(mergeSources)
-
-dependencies {
-    compile 'commons-net:commons-net:3.3'
-    compile 'org.apache.commons:commons-compress:1.7'
-    compile 'org.apache.httpcomponents:httpcore:4.3.2'
-    compile 'org.apache.httpcomponents:httpclient:4.3.2'
-    compile 'org.slf4j:slf4j-api:1.7.6'
-    compile 'org.jdom:jdom2:2.0.5'
-    compile 'org.apache.lucene:lucene-core:3.0.3'
-    compile 'org.apache.lucene:lucene-analyzers:3.0.3'
-    compile 'org.apache.lucene:lucene-snowball:3.0.3'
-    compile 'org.apache.lucene:lucene-smartcn:3.0.3'
-
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+artifacts {
+	buildJSword(compileJava.ext.outputJar) {
+		builtBy compileJava
+	}
 }
